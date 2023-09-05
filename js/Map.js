@@ -158,6 +158,8 @@ function Map()
 				}
 			}
 		}
+		update_url();
+		toast(data.year);
 	}
 
 	// 全Regionから、指定した年に含まれるものだけを抽出
@@ -270,6 +272,57 @@ function Map()
 		}
 	}
 
+	function scroll(dx, dy) {
+		data.map_x += dx;
+		data.map_y += dy;
+		limit_map_center();
+		update_map();
+		update_info();
+	}
+
+	// https://github.com/kaorahi/lizgoban/releases/tag/v0.6.0-pre2
+	// から流用
+	let last_toast_message = null;
+	let last_toast_animation = null;
+	function toast(message) {
+		if (message === last_toast_message) {return;}
+		last_toast_message = message;
+		last_toast_animation && last_toast_animation.finish();
+		document.getElementById('toast_message').textContent = message;
+		const keyframes = [{opacity: 0.2}, {opacity: 0.2}, {opacity: 0}];
+		last_toast_animation = document.getElementById('toast').animate(keyframes, 1000);
+	}
+
+	function update_url() {
+		const recorded_types = ['string', 'number'];
+		const params = new URLSearchParams('');
+		Object.keys(data).forEach(key => {
+			const value = data[key];
+			if (recorded_types.includes(typeof value)) {
+				params.append(key, data[key]);
+			}
+		});
+		const url = location.protocol + '//' + location.host + location.pathname + '?' + params.toString();
+		history.replaceState(null, document.title, url);
+	}
+
+	document.addEventListener('keydown', e => {
+		const u = Math.round(Math.min(window.innerWidth, window.innerHeight) * 0.1);
+		switch (e.key) {
+		case ' ': e.ctrlKey && (push_url(), toast(''), toast(data.year)); break;
+		case 'h': scroll(-u, 0); break;
+		case 'j': scroll(0, +u); break;
+		case 'k': scroll(0, -u); break;
+		case 'l': scroll(+u, 0); break;
+		case 'y': scroll(-u, -u); break;
+		case 'u': scroll(+u, -u); break;
+		case 'b': scroll(-u, +u); break;
+		case 'n': scroll(+u, +u); break;
+		}
+	});
+
+	window.addEventListener('popstate', e => location.reload());
+
 	this.set_size = function(width, height)
 	{
 		curWidth = width;
@@ -307,16 +360,19 @@ function Map()
 	});
 	infoLayer.addEventListener('mousemove', function(e)
 	{
-		if (e.buttons != 0 && (mousedown_x !== e.clientX || mousedown_y !== e.clientY)) {
+		if (e.buttons != 0 && !is_dragging_year && (mousedown_x !== e.clientX || mousedown_y !== e.clientY)) {
 			// マウスドラッグによるスクロール
-			data.map_x += mousedown_x - e.clientX;
-			data.map_y += mousedown_y - e.clientY;
-			limit_map_center();
+			scroll(mousedown_x - e.clientX, mousedown_y - e.clientY);
 			mousedown_x = e.clientX;
 			mousedown_y = e.clientY;
-			update_map();
-			update_info();
 		}
         e.preventDefault();
+	});
+	infoLayer.addEventListener('touchstart', function(e)
+	{
+		const t = e.changedTouches[0];  // ignore multi-touch
+		const {innerWidth, innerHeight} = window
+		const shift = (z, size) => z - size / 2
+		scroll(shift(t.clientX, innerWidth), shift(t.clientY, innerHeight))
 	});
 }

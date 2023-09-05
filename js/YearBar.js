@@ -9,6 +9,7 @@ function YearBar()
 	const arrow_r = document.getElementById('year-arrow-right');
 	const scale = document.getElementById('year-bar-scale');
 	const cursor = document.getElementById('year-bar-cursor');
+	const year_text = document.getElementById('year-text');
 	let scale_width = 1;
 	let on_changed_handler = null;
 	this.SIZE = _SIZE;
@@ -71,11 +72,27 @@ function YearBar()
 		cursor.style.left = ((yr + 200) * scale_width / 9400 + 26) + 'px';
 	}
 
+	function increment_year(delta) {
+		const old_year = data.year;
+		const new_year = data.year + delta;
+		const across_zero = (Math.sign(old_year) !== Math.sign(new_year));
+		data.year = new_year + (across_zero ? Math.sign(delta) : 0);
+	}
+
 	this.onchanged = function(f)
 	{
 		on_changed_handler = f;
 	};
 	this.update = update_cursor;
+
+	document.addEventListener('mouseup', e => {is_dragging_year = false;});
+	document.addEventListener('mouseleave', e => {is_dragging_year = false;});
+	document.addEventListener('mousemove', e => {
+		if (is_dragging_year) {
+			year_bar.dispatchEvent(new MouseEvent('mousedown', {clientX: e.clientX}));
+		}
+		e.preventDefault();
+	});
 
 	year_bar.addEventListener('mousedown', e =>
 	{
@@ -96,6 +113,7 @@ function YearBar()
 		if (on_changed_handler) {
 			on_changed_handler();
 		}
+		is_dragging_year = true;
 	});
 	arrow_l.addEventListener('mouseenter', function(e)
 	{
@@ -113,4 +131,28 @@ function YearBar()
 	{
 		arrow_r.src = 'img/arrow-right.png';
 	});
+	document.addEventListener('keydown', e => {
+		if (e.target.id === 'year-input') {return;}
+		const step = e.shiftKey ? 100 : e.ctrlKey ? 1 : 10;
+		switch (e.key) {
+		case 'ArrowLeft': case ',': case '<': increment_year(- step); break;
+		case 'ArrowRight': case '.': case '>': increment_year(step); break;
+		case '[': increment_year(-1); break;
+		case ']': increment_year(+1); break;
+		case 'Home': goto_year(-4000); break;
+		case 'End': goto_year(MAX_YEAR); break;
+		case '0': !e.ctrlKey && goto_year(1); break;
+		case '1': !e.ctrlKey && goto_year(1000); break;
+		case 'Enter': year_text.dispatchEvent(new Event('mousedown')); return;
+		default: return;
+		}
+		update_cursor();
+		if (on_changed_handler) {
+			on_changed_handler();
+		}
+	});
+	function goto_year(y) {
+		push_url();
+		data.year = y;
+	}
 }
