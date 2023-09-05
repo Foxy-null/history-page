@@ -1,4 +1,4 @@
-# Patched Historical Atlas - interactive world map (4000BC-20XX, every year) on web browser
+# [Patched Historical Atlas on GitHub Pages](https://foxy-null.github.io/history-page/index.html)
 
 <img src="screenshot.gif">
 
@@ -14,13 +14,7 @@ This is just a modification to [World Historical Atlas](http://x768.com/w/twha.e
 
 ## Usage
 
-* Download the original twha5.zip (September 23, 2019 1:34 PM UTC) from [World Historical Atlas](http://x768.com/w/twha.en) and unzip it.
-* Download patched-historical-atlas-main.zip as follows.
-  * Open https://github.com/kaorahi/patched-historical-atlas .
-  * Click the green "Code" button.
-  * Select "Download ZIP".
-* Unzip patched-historical-atlas-main.zip and copy all the files in patched-historical-atlas-main to the original twha5 (overwrite).
-* Open index.html in twha5 with Firefox, Chrome, etc. to start browsing the atlas.
+* Open [this page](https://foxy-null.github.io/history-page/index.html)
 
 ## Keyboard Shortcuts
 
