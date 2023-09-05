@@ -7,7 +7,6 @@ function Region(a)
 {
 	let region_name = [null, null, null];
 	let region_abbr = [null, null, null];
-	let region_period = [null, null];
 	let person_list = [];
 	let flag = null;
 
@@ -56,30 +55,12 @@ function Region(a)
 			a[offset + 2] = a[offset + 0];
 		}
 	}
-	function period_bar_segment(len, years_per_em, height_em, color) {
-		const css = (key, val) => key + ': ' + val + ';';
-		const geom = [height_em, len / years_per_em, 0, 0];
-		const display = css('display', 'inline-block');
-		const padding = css('padding', geom.map(s => s + 'em').join(' '));
-		const background_color = css('background-color', color);
-		const style = [display, padding, background_color].join(' ');
-		return '<div style="' + style + '"></div>';
-	}
-	function period_bar(beg, end, years_per_em, height_em, past_color, future_color, outer_style)
-	{
-		const past_years = data.year - beg;
-		const future_years = Math.min(end, MAX_YEAR) - data.year;
-		const past = period_bar_segment(past_years, years_per_em, height_em, past_color);
-		const future = period_bar_segment(future_years, years_per_em, height_em, future_color);
-		return '<div style="' + outer_style + '">' + past + future + '</div>';
-	}
 
 	this.update_year = function()
 	{
 		let year = data.year;
 		let title = null;
 		let i;
-		let prev_region_name0 = null;
 
 		// 国名
 		for (i = 3; i < a.length && a[i].length > 3; i++) {
@@ -102,24 +83,9 @@ function Region(a)
 				this.pos_y = b[10];
 				this.disp_level = b[11];
 			}
-			if (region_name[0] !== prev_region_name0) {
-				prev_region_name0 = region_name[0];
-				region_period[0] = b[0];
-			}
-			region_period[1] = b[1];
 			if (year < b[1]) {
 				break;
 			}
-		}
-		for (; i < a.length && a[i].length > 3; i++) {
-			let b = a[i];
-			if (b[3]) {
-				set_default_name(b, 3);
-				if (b[3] !== prev_region_name0) {
-					break;
-				}
-			}
-			region_period[1] = b[1];
 		}
 		for (; i < a.length && a[i].length > 3; i++) {
 		}
@@ -146,9 +112,8 @@ function Region(a)
 
 		let lang = lang_name_to_id(data.lang);
 		let html = '';
-		html += period_bar(region_period[0], region_period[1], 100, 0.2, 'red', 'blue', 'width: 100vw;');
 		if (flag && data.zoom >= 1){
-			html += '<img src="sym/' + flag + '.png" alt="">';
+			html = '<img src="sym/' + flag + '.png" alt="">';
 		}
 		if (data.zoom - this.disp_level >= 2) {
 			html += region_name[lang];
@@ -181,7 +146,6 @@ function Region(a)
 					html = '<img src="f/0.png" alt="">';
 				}
 				html += '<div>' + a_title[lang] + '</div><div>' + a_person[3 + lang] + '</div>';
-				html += period_bar(a_person[0], a_person[1], 10, 0.5, '#484', '#6c6', 'padding-top: 0;');
 				item.innerHTML = html;
 				body.appendChild(item);
 			}
