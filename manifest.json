@@ -1,0 +1,12 @@
+{
+  "short_name": "PWAサイト",
+
+
+  "name": "サンプルのPWAサイト",
+
+
+  "start_url": "https://pwa.glitch.me/",
+
+
+  "display": "standalone",
+}
