@@ -1,11 +1,11 @@
 {
-  "short_name": "PWAサイト",
+  "short_name": "アトラスマップ",
 
 
-  "name": "サンプルのPWAサイト",
+  "name": "世界地図アトラス",
 
 
-  "start_url": "https://pwa.glitch.me/",
+  "start_url": "https://sekaishi.cloudns.nz/",
 
 
   "display": "standalone",
