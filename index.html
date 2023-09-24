@@ -4,6 +4,21 @@
 <meta charset="UTF-8">
 <link rel="manifest" href="manifest.json">
 <style type="text/css"> @import "style.css"; </style>
+<script>
+navigator.serviceWorker.register('/sw.js').then(function() {
+
+
+        console.log('サービスワーカーの登録成功');
+
+
+}).catch(function(err) {
+
+
+        console.log('サービスワーカーの登録ができませんでした：', err);
+
+
+});
+</script>
 <script type="application/x-javascript">
 
 'use strict';
