@@ -9,4 +9,14 @@
 
 
   "display": "standalone",
+
+    "icons": [
+    {
+      "src": "img/icon.png",
+      "type": "image/png",
+      "sizes": "398x398"
+    }
+  ],
+  "background_color": "#000000",
+  "orientation": "portrait"
 }
