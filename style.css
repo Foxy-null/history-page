@@ -4,9 +4,17 @@ html, body {
 	height: 100%;
 	overflow: hidden;
 }
+
 body {
-	background: url(img/back.png);
+	background: linear-gradient(
+		to bottom,
+		#0572a4 0%,
+		#0572a4 48%,
+		#424242 40%,
+		#424242 100%
+	  );
 	line-height: 1.2;
+	filter: invert(90%) hue-rotate(180deg);
 }
 img {
 	border: 0;
