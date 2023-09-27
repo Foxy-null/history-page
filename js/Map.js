@@ -310,10 +310,10 @@ function Map()
 		const u = Math.round(Math.min(window.innerWidth, window.innerHeight) * 0.1);
 		switch (e.key) {
 		case ' ': e.ctrlKey && (push_url(), toast(''), toast(data.year)); break;
-		case 'h': scroll(-u, 0); break;
-		case 'j': scroll(0, +u); break;
-		case 'k': scroll(0, -u); break;
-		case 'l': scroll(+u, 0); break;
+		case 'ArrowLeft': scroll(-u, 0); break;
+		case 'ArrowDown': scroll(0, +u); break;
+		case 'ArrowUp': scroll(0, -u); break;
+		case 'ArrowRight': scroll(+u, 0); break;
 		case 'y': scroll(-u, -u); break;
 		case 'u': scroll(+u, -u); break;
 		case 'b': scroll(-u, +u); break;
