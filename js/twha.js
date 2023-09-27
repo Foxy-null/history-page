@@ -170,7 +170,7 @@
 		case 'C': open_wikipedia_century(); break;
 		case 'D': open_wikipedia_decade(); break;
 		case 'Y': open_wikipedia_year(); break;
-		case '?': open_new_tab('HELP.md'); break;
+		case '?': open_new_tab('HELP.html'); break;
 		}
 	});
 
