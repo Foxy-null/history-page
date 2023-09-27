@@ -135,8 +135,8 @@ function YearBar()
 		if (e.target.id === 'year-input') {return;}
 		const step = e.shiftKey ? 100 : e.ctrlKey ? 1 : 10;
 		switch (e.key) {
-		case 'ArrowLeft': case ',': case '<': increment_year(- step); break;
-		case 'ArrowRight': case '.': case '>': increment_year(step); break;
+		case ',': case '<': increment_year(- step); break;
+		case '.': case '>': increment_year(step); break;
 		case '[': increment_year(-1); break;
 		case ']': increment_year(+1); break;
 		case 'Home': goto_year(-4000); break;
