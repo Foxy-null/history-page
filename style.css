@@ -14,7 +14,7 @@ body {
 		#424242 100%
 	  );
 	line-height: 1.2;
-	filter: invert(90%) hue-rotate(180deg);
+	filter: invert(1) hue-rotate(180deg);
 }
 img {
 	border: 0;
@@ -159,6 +159,8 @@ img {
 	font-size: 12px;
 	font-weight: bold;
     cursor: default;
+	color: white;
+	filter: invert(1) hue-rotate(180deg);
 }
 .person-list {
 	background: rgba(255,255,255,0.75);
@@ -174,4 +176,5 @@ img {
 }
 .person img {
 	float: left;
+	filter: invert(1) hue-rotate(180deg);
 }
