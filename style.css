@@ -16,6 +16,16 @@ body {
 	line-height: 1.2;
 	filter: invert(1) hue-rotate(180deg);
 	touch-action: manipulation;
+   	-moz-user-select: -moz-none;
+   	-khtml-user-select: none;
+	-webkit-user-select: none;
+
+	   /*
+	     Introduced in IE 10.
+	     See http://ie.microsoft.com/testdrive/HTML5/msUserSelect/
+	   */
+ 	-ms-user-select: none;
+	user-select: none;
 }
 img {
 	border: 0;
