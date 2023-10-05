@@ -15,6 +15,7 @@ body {
 	  );
 	line-height: 1.2;
 	filter: invert(1) hue-rotate(180deg);
+	touch-action: manipulation;
 }
 img {
 	border: 0;
