@@ -4,17 +4,7 @@ html, body {
 	height: 100%;
 	overflow: hidden;
 }
-
-body {
-	background: linear-gradient(
-		to bottom,
-		#0572a4 0%,
-		#0572a4 48%,
-		#424242 40%,
-		#424242 100%
-	  );
-	line-height: 1.2;
-	filter: invert(1) hue-rotate(180deg);
+.html {
 	touch-action: manipulation;
    	-moz-user-select: -moz-none;
    	-khtml-user-select: none;
@@ -26,6 +16,18 @@ body {
 	   */
  	-ms-user-select: none;
 	user-select: none;
+}
+
+body {
+	background: linear-gradient(
+		to bottom,
+		#0572a4 0%,
+		#0572a4 48%,
+		#424242 40%,
+		#424242 100%
+	  );
+	line-height: 1.2;
+	filter: invert(1) hue-rotate(180deg);
 }
 img {
 	border: 0;
