@@ -1,4 +1,4 @@
-# [Patched Historical Atlas on GitHub Pages](https://foxy-null.github.io/history-page/index.html)
+# [Patched Historical Atlas on GitHub Pages](https://foxy-null.github.io/history-page/)
 
 <img src="screenshot.gif">
 
@@ -14,7 +14,7 @@ This is just a modification to [World Historical Atlas](http://x768.com/w/twha.e
 
 ## Usage
 
-* Open [this page](https://foxy-null.github.io/history-page/index.html)
+* Open [this page](https://foxy-null.github.io/history-page/)
 
 ## Keyboard Shortcuts
 
