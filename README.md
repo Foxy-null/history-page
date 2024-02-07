@@ -1,4 +1,5 @@
 # [Patched Historical Atlas on GitHub Pages](https://foxy-null.github.io/history-page/)
+※Only dark mode is supported.
 
 <img src="screenshot.gif">
 
